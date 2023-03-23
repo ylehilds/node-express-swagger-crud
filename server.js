@@ -28,10 +28,16 @@ app.get('/user/:id', (req, res) => {
     return res.status(400).send({success: 'false', message: 'id is required',})
   }
   const id = parseInt(req.params.id, 10)
-  return res.status(200).send({
+  if (findUserById(id)) {
+    return res.status(200).send({
+      success: 'true',
+      message: 'user',
+      user: findUserById(id)
+    })
+  }
+  return res.status(404).send({
     success: 'true',
-    message: 'user',
-    user: findUserById(id)
+    message: 'error id not found'
   })
 })
 

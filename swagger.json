@@ -24,7 +24,7 @@
     "/users": {
       "get": {
         "tags": ["Users"],
-        "summary": "Get all users in system",
+        "summary": "Get all users from the system",
         "responses": {
           "200": {
             "description": "OK",
@@ -37,8 +37,8 @@
     },
     "/user": {
       "post": {
-        "tags": ["Users"],
-        "description": "Create new user in system",
+        "tags": ["User"],
+        "description": "Create new user in the system",
         "parameters": [
           {
             "name": "user",
@@ -76,9 +76,33 @@
           "type": "integer"
         }
       ],
+      "get": {
+        "tags": ["User"],
+        "summary": "Get a specific user from the system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Bad Request. id is required",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          },
+          "404": {
+            "description": "Error: Not Found. error id not found",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      },
       "put": {
-        "summary": "Update user with give ID",
-        "tags": ["Users"],
+        "summary": "Update user with a given ID",
+        "tags": ["User"],
         "parameters": [
           {
             "name": "user",
@@ -105,8 +129,8 @@
         }
       },
       "delete": {
-        "summary": "Delete user with given ID",
-        "tags": ["Users"],
+        "summary": "Delete user with a given ID",
+        "tags": ["User"],
         "responses": {
           "204": {
             "description": "User is deleted",
